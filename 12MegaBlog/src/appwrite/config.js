@@ -83,7 +83,6 @@ export class Service {
         }
     }
 
-
     async getPosts(queries = [Query.select('status', 'published')]) {
         try {
             const response = await this.TablesDB.listRows({
