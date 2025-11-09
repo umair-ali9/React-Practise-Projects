@@ -98,6 +98,41 @@ export class Service {
         }
     }
 
+    // file upload service
+
+    async uploadFile(file){
+        try {
+            return await this.Storage.createFile(
+                confg.storageId,
+                ID.unique(),
+                file,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: uploadFile :: error", error);
+            throw error;
+        }
+    }
+
+    async deleteFille(fileID){
+        try {
+            await this.Storage.deleteFille(
+                confg.storageId,
+                fileID,
+            )
+            return true;
+        } catch (error) {
+            console.log("Appwrite service :: deleteFile :: error", error);
+            throw error;
+            return false;
+        }
+    }
+
+    getFilePreview(fileID){
+        return this.Storage.getFilePreview(
+            confg.storageId,
+            fileID,
+        )
+    }
 }
 
 const service = new Service()
