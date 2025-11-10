@@ -1,4 +1,4 @@
-const conf = {
+const confg = {
     appwriteUrl: String(import.meta.env.VITE_APPWRITE_URL),
     projectId: String(import.meta.env.VITE_PROJECT_ID),
     databaseId: String(import.meta.env.VITE_DATABASE_ID),
@@ -6,4 +6,4 @@ const conf = {
     storageId: String(import.meta.env.VITE_BUCKET_ID),
 }
 
-export default conf
+export default confg;
