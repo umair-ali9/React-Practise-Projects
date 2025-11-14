@@ -4,7 +4,7 @@ import container from './container/container'
 import logo from './logo'
 import logoutBtn from './header/logoutBtn'
 import Button from "./Button"
-import input from './input'
+import Input from './input'
 
 export {
     Header,
@@ -13,5 +13,5 @@ export {
     logo,
     logoutBtn,
     Button,
-    input
+    Input
 }
