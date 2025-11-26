@@ -113,9 +113,9 @@ export class Service {
         }
     }
 
-    async deleteFille(fileID){
+    async deleteFile(fileID){
         try {
-            await this.Storage.deleteFille(
+            await this.Storage.deleteFile(
                 confg.storageId,
                 fileID,
             )
