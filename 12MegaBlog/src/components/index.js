@@ -1,6 +1,6 @@
 import Header from "./header/header";
 import Footer from "./footer/footer";
-import container from './container/container.jsx'
+import Container from './container/container.jsx'
 import logo from './logo'
 import logoutBtn from './header/logoutBtn'
 import Button from "./Button"
@@ -9,11 +9,14 @@ import RTE from './RTE'
 import Select from './Select'
 import Signup from './Signup.jsx'
 import Login from './Login.jsx'
+import PostCard from './PostCard.jsx'
+import PostForm from './post-form/PostForm.jsx'
+import PostCard from "./PostCard.jsx";
 
 export {
     Header,
     Footer,
-    container,
+    Container,
     logo,
     logoutBtn,
     Button,
@@ -21,5 +24,8 @@ export {
     RTE,
     Select,
     Signup,
-    Login
+    Login,
+    PostCard,
+    PostForm,
+    PostCard
 }
