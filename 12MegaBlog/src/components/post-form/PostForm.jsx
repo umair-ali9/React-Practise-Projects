@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Button, Input, Select, RTE } from '../index'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { appwriteService } from '../../appwrite/config'
+import  service  from '../../appwrite/config'
 
 
 function PostForm({ post }) {
@@ -106,7 +106,7 @@ function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={service.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
