@@ -7,9 +7,9 @@ function Home() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        service.getPosts().then((post) => {
-            if (post) {
-                setPosts(post.documents)
+        service.getPosts([]).then((posts) => {
+            if (posts) {
+                setPosts(posts.documents)
             }
         })
     }, [])

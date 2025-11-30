@@ -1,22 +1,24 @@
 import confg from '../confg/confg';
-import { Client, ID, Databases, Storage, Query} from 'appwrite';
+import { Client, ID, Databases, Storage, Query } from 'appwrite';
 
 export class Service {
     client = new Client();
     databases;
     bucket;
+
     constructor() {
         this.client
             .setEndpoint(confg.appwriteUrl)
             .setProject(confg.projectId);
+
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
 
     async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
-            return await this.TablesDB.createRow({
-                databasesId: confg.databasesId,
+            return await this.databases.createRow({
+                databasesId: confg.databaseId,
                 tableId: confg.collectionId,
                 rowId: ID.unique(),
                 data: {
@@ -36,8 +38,8 @@ export class Service {
 
     async updatePost(postId, { title, slug, content, featuredImage, status, userId }) {
         try {
-            return await this.TablesDB.updateRow({
-                databasesId: confg.databasesId,
+            return await this.databases.updateRow({
+                databasesId: confg.databaseId,
                 tableId: confg.collectionId,
                 rowId: postId,
                 data: {
@@ -57,8 +59,8 @@ export class Service {
 
     async deletePost(postId) {
         try {
-            await this.TablesDB.deleteRow({
-                databasesId: confg.databasesId,
+            await this.databases.deleteRow({
+                databasesId: confg.databaseId,
                 tableId: confg.collectionId,
                 rowId: postId,
             })
@@ -66,14 +68,13 @@ export class Service {
         } catch (error) {
             console.log("Appwrite service :: deletePost :: error", error);
             throw error;
-            return false;
         }
     }
 
     async getPost(postId) {
         try {
-            const response = await this.TablesDB.getRows({
-                databasesId: confg.databasesId,
+            const response = await this.databases.getRow({
+                databasesId: confg.databaseId,
                 tableId: confg.collectionId,
                 rowId: postId,
             });
@@ -86,8 +87,8 @@ export class Service {
 
     async getPosts(queries = [Query.select('status', 'published')]) {
         try {
-            const response = await this.TablesDB.listRows({
-                databasesId: confg.databasesId,
+            const response = await this.databases.listRows({
+                databasesId: confg.databaseId,
                 tableId: confg.collectionId,
                 queries,
             });
@@ -98,11 +99,9 @@ export class Service {
         }
     }
 
-    // file upload service
-
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
-            return await this.Storage.createFile(
+            return await this.bucket.createFile(
                 confg.storageId,
                 ID.unique(),
                 file,
@@ -113,28 +112,27 @@ export class Service {
         }
     }
 
-    async deleteFile(fileID){
+    async deleteFile(fileId) {
         try {
-            await this.Storage.deleteFile(
+            await this.bucket.deleteFile(
                 confg.storageId,
-                fileID,
+                fileId
             )
-            return true;
+            return true
         } catch (error) {
             console.log("Appwrite service :: deleteFile :: error", error);
-            throw error;
-            return false;
+            return false
         }
     }
 
-    getFilePreview(fileID){
-        return this.Storage.getFilePreview(
+    getFilePreview(fileId) {
+        return this.bucket.getFilePreview(
             confg.storageId,
-            fileID,
+            fileId
         )
     }
 }
 
-const service = new Service()
 
-export default service;
+const service = new Service()
+export default service

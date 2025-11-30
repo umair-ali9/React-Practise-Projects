@@ -2,7 +2,7 @@ import Header from "./header/header";
 import Footer from "./footer/footer";
 import Container from './container/container.jsx'
 import Logo from './Logo.jsx'
-import logoutBtn from './header/logoutBtn'
+import LogoutBtn from './header/LogoutBtn.jsx'
 import Button from "./Button"
 import Input from './input'
 import RTE from './RTE'
@@ -18,7 +18,7 @@ export {
     Footer,
     Container,
     Logo,
-    logoutBtn,
+    LogoutBtn,
     Button,
     Input,
     RTE,
