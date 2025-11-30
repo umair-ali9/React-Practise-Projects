@@ -19,15 +19,25 @@ export default function Post() {
             service.getPost(slug).then((post) => {
                 if (post) setPost(post);
                 else navigate("/");
-            });
-        } else navigate("/");
+            })
+                .catch((error) => {
+                    console.error("Error fetching post:", error);
+                    navigate("/");
+                });
+        } else {
+            navigate("/");
+        }
     }, [slug, navigate]);
 
     const deletePost = () => {
+        if (!post) return;
+
         service.deletePost(post.$id).then((status) => {
             if (status) {
                 service.deleteFile(post.featuredImage);
                 navigate("/");
+            } else {
+                console.error("Failed to delete post.");
             }
         });
     };
@@ -56,12 +66,14 @@ export default function Post() {
                     )}
                 </div>
                 <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                    <h1 className="text-4xl font-extrabold text-gray-900">{post.title}</h1>
                 </div>
-                <div className="browser-css">
+                <div className="browser-css prose max-w-none">
                     {parse(post.content)}
-                    </div>
+                </div>
             </Container>
         </div>
-    ) : null;
+    ) : (
+        <div className="w-full py-8 text-center">Loading post...</div>
+    );
 }

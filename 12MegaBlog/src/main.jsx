@@ -6,16 +6,16 @@ import store from './store/store.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import { AuthLayout, Login } from './components/index.js'
-import {createRoot} from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 
 
-import AddPost from "./pages/AddPost";
-import Signup from './pages/Signup'
-import EditPost from "./pages/EditPost";
+import AddPost from "./pages/AddPost.jsx";
+import Signup from './pages/Signup.jsx'
+import EditPost from "./pages/EditPost.jsx";
 
-import Post from "./pages/Post";
+import Post from "./pages/Post.jsx";
 
-import AllPost from "./pages/AllPost";
+import AllPost from "./pages/AllPost.jsx";
 
 const router = createBrowserRouter([
   {
