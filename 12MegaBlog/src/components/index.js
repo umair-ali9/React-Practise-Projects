@@ -1,7 +1,7 @@
 import Header from "./header/header";
 import Footer from "./footer/footer";
 import Container from './container/container.jsx'
-import logo from './logo'
+import Logo from './Logo.jsx'
 import logoutBtn from './header/logoutBtn'
 import Button from "./Button"
 import Input from './input'
@@ -17,7 +17,7 @@ export {
     Header,
     Footer,
     Container,
-    logo,
+    Logo,
     logoutBtn,
     Button,
     Input,
