@@ -125,8 +125,9 @@ export class Service{
     }
 
     getFilePreview(fileId){
-        return this.bucket.getFile(
+        return this.bucket.getFilePreview(
             confg.storageId,
+            ID.unique(),
             fileId
         )
     }
