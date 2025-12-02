@@ -39,23 +39,48 @@ function PostForm({ post }) {
                 navigate(`/post/${dbPost.$id}`)
             }
         }
+        // else {
+        // const file = await service.uploadFile(data.image[0])
+
+        // if (file) {
+        //     const fileId = file.$id
+        //     data.featuredImage = fileId
+
+        //     const dbPost = await service.createPost({
+        //         ...data,
+        //         userId: userData.$id,
+        //     });
+
+        //     if (dbPost) {
+        //         navigate(`/post/${dbPost.$id}`)
+        //     }
+        // } else {
+        //     console.error("File upload failed. Cannot create post without featured image.");
+        // }
         else {
-            const file = await service.uploadFile(data.image[0])
+            const fileToUpload = data.image && data.image[0];
+            let file = null;
+
+            if (fileToUpload) {
+                file = await service.uploadFile(fileToUpload);
+            }
 
             if (file) {
                 const fileId = file.$id
-                data.featuredImage = fileId
+                data.featuredimage = fileId
+
+                console.log("Data sent to createPost:", { ...data, userId: userData.$id })
 
                 const dbPost = await service.createPost({
                     ...data,
                     userId: userData.$id,
-                })
+                });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`)
                 }
             } else {
-                console.error("File upload failed. Cannot create post without featured image.");
+                console.error("Post creation failed: Featured image is required and must be uploaded successfully.");
             }
         }
     }
