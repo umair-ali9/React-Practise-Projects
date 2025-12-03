@@ -69,7 +69,12 @@ function PostForm({ post }) {
                 const fileId = file.$id
                 data.featuredimage = fileId
 
-                console.log("Data sent to createPost:", { ...data, userId: userData.$id })
+                // console.log("Data sent to createPost:", { ...data, userId: userData.$id })
+
+                if (!userData || !userData.$id) {
+                    console.error("Cannot create post: User is not identified.");
+                    return;
+                }
 
                 const dbPost = await service.createPost({
                     ...data,
