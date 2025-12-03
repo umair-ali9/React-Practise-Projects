@@ -37,6 +37,7 @@ export class AuthService {
         try {
             return await this.account.createEmailPasswordSession({ email, password });
         } catch (error) {
+            alert("Login failed. Please check your credentials.");
             console.log("Appwrite service :: login :: error", error);
         }
     }
